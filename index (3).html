@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sara Repolho — Data & BI Portfolio</title>
+<meta name="description" content="Portfolio of Sara Repolho, Business Intelligence and Data Analytics — data warehousing, dimensional modelling, SQL and Power BI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #5f6368;
+    --line: #e6e3dc;
+    --accent: #1f4e79;
+    --accent-soft: #e8eff6;
+    --status: #8a5a00;
+    --status-soft: #fbf1dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121417;
+      --surface: #1a1d21;
+      --text: #ececec;
+      --muted: #a3a8ae;
+      --line: #2c3036;
+      --accent: #8ab4e0;
+      --accent-soft: #1d2a38;
+      --status: #e8b65a;
+      --status-soft: #2e2617;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+  nav .brand { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.15rem; color: var(--text); }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; font-size: .92rem; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  header.hero { padding: 88px 0 64px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; font-weight: 600; color: var(--accent); margin: 0 0 14px; }
+  h1, h2, h3 { font-family: "Fraunces", serif; font-weight: 600; line-height: 1.2; margin: 0; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); max-width: 760px; }
+  .lead { font-size: 1.12rem; color: var(--muted); max-width: 680px; margin: 22px 0 30px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 11px 20px; border-radius: 8px; font-weight: 500; font-size: .95rem;
+    border: 1px solid var(--accent);
+  }
+  .btn.primary { background: var(--accent); color: var(--bg); }
+  .btn.ghost { color: var(--accent); }
+  .btn:hover { text-decoration: none; opacity: .9; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 1.8rem; margin-bottom: 8px; }
+  .section-intro { color: var(--muted); margin: 0 0 32px; max-width: 640px; }
+
+  .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; }
+  .about-grid p { margin: 0 0 14px; }
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; font-size: .94rem; }
+  .facts dt { font-weight: 600; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-top: 14px; }
+  .facts dt:first-child { margin-top: 0; }
+  .facts dd { margin: 2px 0 0; }
+
+  .project {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 30px; margin-bottom: 22px;
+  }
+  .project.featured { border-left: 4px solid var(--accent); }
+  .project-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+  .project h3 { font-size: 1.35rem; }
+  .meta { color: var(--muted); font-size: .88rem; margin: 4px 0 16px; }
+  .badge {
+    font-size: .74rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .badge.progress { background: var(--status-soft); color: var(--status); }
+  .project p { margin: 0 0 14px; }
+  .project ul { margin: 0 0 16px; padding-left: 20px; }
+  .project li { margin-bottom: 6px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .tag { font-size: .8rem; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); }
+  .links { margin-top: 16px; font-size: .92rem; font-weight: 500; display: flex; gap: 18px; flex-wrap: wrap; }
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+  .skill-group h3 { font-size: 1.05rem; margin-bottom: 10px; }
+  .skill-group ul { list-style: none; margin: 0; padding: 0; font-size: .94rem; }
+  .skill-group li { padding: 5px 0; border-bottom: 1px dashed var(--line); }
+  .skill-group li:last-child { border-bottom: 0; }
+
+  .contact { text-align: center; padding: 72px 0; }
+  .contact .cta { justify-content: center; margin-top: 24px; }
+  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 26px 0 40px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 720px) {
+    nav ul { gap: 14px; font-size: .85rem; }
+    nav ul li.hide-sm { display: none; }
+    header.hero { padding: 56px 0 44px; }
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+    .project { padding: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">Sara Repolho</a>
+    <ul>
+      <li class="hide-sm"><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Business Intelligence · Data Analytics</p>
+    <h1>Turning complex data into structured models and decisions people can act on.</h1>
+    <p class="lead">
+      I design data warehouses, relational databases and Power BI solutions — from raw source data
+      through ETL and dimensional modelling to dashboards built for non-technical stakeholders.
+      My background in law brings rigour, documentation discipline and a strong grasp of data protection and compliance.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/sara-repolho-455411188" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I hold a Postgraduate Degree in Information Systems Management from NOVA IMS (NOVA Information Management School),
+          awarded on completing the full academic component of the Master's programme. I'm now completing the
+          Master's in Information Systems Management through my final project, having chosen Business Intelligence
+          as part of my coursework.
+        </p>
+        <p>
+          Before moving into data, I trained and worked in the legal field. That experience shaped how I approach
+          analytics: define requirements precisely, document every decision, and make sure the output is
+          trustworthy, compliant and understandable by the people who rely on it.
+        </p>
+        <p>
+          I'm looking for my first role as a <strong>Data Analyst, BI Developer or Business Analyst</strong>,
+          where I can combine technical modelling skills with stakeholder-facing communication.
+        </p>
+      </div>
+      <dl class="facts">
+        <dt>Education</dt>
+        <dd>Postgraduate Degree in Information Systems Management — NOVA IMS</dd>
+        <dd>MSc Information Systems Management — NOVA IMS (final project in progress)</dd>
+        <dd>Licenciatura in Solicitadoria</dd>
+        <dt>Location</dt>
+        <dd>Lisbon area, Portugal</dd>
+        <dt>Languages</dt>
+        <dd>Portuguese (native), English (professional)</dd>
+        <dt>Focus</dt>
+        <dd>Data warehousing, dimensional modelling, SQL, Power BI</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="section-intro">Selected academic and independent work, from end-to-end BI architecture to database design.</p>
+
+    <!-- PROJECT 1 -->
+    <article class="project featured">
+      <div class="project-head">
+        <h3>UFO Sightings — Enterprise Data Warehouse &amp; BI Solution</h3>
+        <span class="badge">Featured</span>
+      </div>
+      <p class="meta">Academic project · NOVA IMS · Microsoft Fabric, Power BI</p>
+      <p>
+        An end-to-end dimensional data warehouse built on a public UFO sightings dataset to simulate
+        an enterprise BI architecture — from raw ingestion to a business-ready semantic model and dashboard.
+      </p>
+      <ul>
+        <li><strong>Architecture:</strong> designed a Lakehouse → staging → data warehouse layered architecture in Microsoft Fabric.</li>
+        <li><strong>Modelling:</strong> applied Kimball dimensional methodology — defined the grain, implemented fact and dimension tables, created surrogate keys and lookup transformations.</li>
+        <li><strong>ETL:</strong> cleansed, normalised and transformed data with Fabric Dataflows, and orchestrated the full ETL process with Fabric Pipelines.</li>
+        <li><strong>Semantic model:</strong> renamed and organised attributes for clarity and adoption by non-technical users, and built hierarchies for intuitive drill-down analysis.</li>
+        <li><strong>Analytics:</strong> authored reusable DAX measures for key business metrics and delivered an interactive dashboard aligned to defined business requirements.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Microsoft Fabric</span><span class="tag">Lakehouse</span><span class="tag">Dataflows</span>
+        <span class="tag">Pipelines</span><span class="tag">Kimball</span><span class="tag">Star schema</span>
+        <span class="tag">DAX</span><span class="tag">Power BI</span>
+      </div>
+      <!-- Add links once you upload screenshots / a PDF of the dashboard to the repo -->
+      <!-- <div class="links"><a href="projects/ufo-dw/">Project details →</a><a href="projects/ufo-dw/dashboard.pdf">Dashboard (PDF) →</a></div> -->
+    </article>
+
+    <!-- PROJECT 2 -->
+    <article class="project">
+      <div class="project-head">
+        <h3>Relational Database Design &amp; SQL Optimisation</h3>
+      </div>
+      <p class="meta">Academic project · NOVA IMS · SQL, ER modelling</p>
+      <p>
+        Designed and implemented a relational database for a company scenario, from conceptual model
+        to optimised queries, to improve data consistency and reporting performance.
+      </p>
+      <ul>
+        <li>Built a full Entity-Relationship model and translated it into a physical schema.</li>
+        <li>Applied normalisation to remove redundancy and protect data integrity.</li>
+        <li>Defined primary and foreign keys to enforce referential integrity.</li>
+        <li>Wrote and optimised SQL queries to support reliable, efficient reporting.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">SQL</span><span class="tag">ER diagram</span><span class="tag">Normalisation</span>
+        <span class="tag">Referential integrity</span><span class="tag">Query optimisation</span>
+      </div>
+    </article>
+
+    <!-- PROJECT 3 -->
+    <article class="project">
+      <div class="project-head">
+        <h3>IT Service Management Improvement Proposal</h3>
+      </div>
+      <p class="meta">Academic project · NOVA IMS · ITIL 4</p>
+      <p>
+        A structured improvement proposal for an organisation's IT service management practices,
+        grounded in the ITIL 4 guiding principles.
+      </p>
+      <ul>
+        <li>Assessed existing service management practices and identified improvement opportunities.</li>
+        <li>Mapped proposed changes to the ITIL 4 guiding principles (e.g. focus on value, progress iteratively, keep it simple and practical).</li>
+        <li>Translated findings into a practical, prioritised set of recommendations for decision-makers.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">ITIL 4</span><span class="tag">ITSM</span><span class="tag">Process improvement</span>
+        <span class="tag">Stakeholder analysis</span>
+      </div>
+    </article>
+
+    <!-- PROJECT 4 -->
+    <article class="project">
+      <div class="project-head">
+        <h3>Power BI Monitoring Tool for Portuguese Publishers</h3>
+        <span class="badge progress">In progress</span>
+      </div>
+      <p class="meta">Master's thesis project · NOVA IMS · Power BI, Power Query, public APIs</p>
+      <p>
+        A BI artefact that helps publishers decide which titles to translate and localise for the Portuguese market.
+      </p>
+    </article>
+
+    <!-- PROJECT 5 -->
+    <article class="project">
+      <div class="project-head">
+        <h3>Citizen Science Biodiversity Dashboard</h3>
+        <span class="badge progress">In progress</span>
+      </div>
+      <p class="meta">Independent project · Open data</p>
+      <p>
+        I regularly record biodiversity observations that feed open scientific datasets. I'm building
+        a personal dataset from these records to develop a BI dashboard exploring species, locations
+        and seasonal patterns.
+      </p>
+      <ul>
+        <li>Collecting and structuring first-hand observation data.</li>
+        <li>Planned: data model, cleansing pipeline and an interactive Power BI dashboard.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Citizen science</span><span class="tag">Open data</span><span class="tag">Power BI</span>
+        <span class="tag">Data collection</span>
+      </div>
+    </article>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <p class="section-intro">Tools and methods I've applied in hands-on projects.</p>
+    <div class="skills">
+      <div class="skill-group">
+        <h3>Data Engineering &amp; Modelling</h3>
+        <ul>
+          <li>Kimball dimensional modelling</li>
+          <li>Star schema, facts &amp; dimensions</li>
+          <li>ER modelling &amp; normalisation</li>
+          <li>ETL design &amp; orchestration</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Tools &amp; Platforms</h3>
+        <ul>
+          <li>Microsoft Fabric (Lakehouse, Dataflows, Pipelines)</li>
+          <li>Power BI &amp; DAX</li>
+          <li>Power Query</li>
+          <li>SQL</li>
+          <li>Celonis (process mining)</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Business &amp; Governance</h3>
+        <ul>
+          <li>Requirements gathering</li>
+          <li>Stakeholder communication</li>
+          <li>ITIL 4 / IT service management</li>
+          <li>GDPR &amp; regulatory awareness</li>
+          <li>Legal analysis &amp; documentation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Let's talk</h2>
+    <p class="section-intro" style="margin: 10px auto 0;">Open to Data Analyst, BI Developer and Business Analyst opportunities in Portugal and remote.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.linkedin.com/in/sara-repolho-455411188" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/Alter-route" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>© 2026 Sara Repolho · Built with HTML &amp; CSS with AI support, hosted on GitHub Pages</footer>
+
+</body>
+</html>
